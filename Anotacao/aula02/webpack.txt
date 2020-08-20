@@ -1,0 +1,49 @@
+webpack é uma maneira de trabalhar com vários arquivos js,css,imagens na aplicação.
+
+Antes de instalar o webpack, abra o arquivo package.json
+
+mude a linha "dependecies" para "devDependecies"
+
+yarn add webpack webpack-cli -D //-D para instalar pacotes apenas no ambiente de desenvolvimento.
+
+Verificar no package.json se os pacotes foram instalados.
+
+Crie um arquivo webpack.config.js na raiz do projeto, ele será o arquivo de configuração do webpack.
+
+No webpack.config.js:
+module.exports = {
+    entry: './main.js',
+    output: {
+        path: __dirname,
+        filename: 'bundle.js',
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                },
+            },
+        ],
+    },
+};
+
+
+// Entendendo o arquivo webpack.config.js
+//entry é área para determinar qual será o nosso arquivo principal.
+//output para determinar para qual diretório e arquivo convertido.
+//__dirname é uma variavel global que retorna o diretório do projeto
+//rules é um propriedade obrigatoria
+//no rules nós definimos como o webpack se comportará quando o dev importar um novo js
+// o /\.js$/ é um expressao regurar, o $ significa o final da expressao, // significa a expressao regular
+// basicamente ele irá ler todos os arquivos .js
+
+Instalar o babel-loader
+yarn add babel-loader -D
+
+Agora para executar o webpack, abrir o package.json e alterar os parametros de scripts
+"dev": "webpack --mode=development -w" //-w para monitorar o diretório
+
+Só executar digitando no terminal yarn dev

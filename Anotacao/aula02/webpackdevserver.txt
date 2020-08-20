@@ -1,0 +1,54 @@
+Criar uma pasta na raiz do projeto chamada
+
+public //html, css
+
+src //todo código javascript
+
+Ajustar os diretórios no webpack.config.js
+    entry: './src/main.js',
+    output: {
+        path: __dirname + '/public',
+
+Instalar o webpack-dev-server
+
+No terminal 
+yarn add webpack-dev-server -D
+
+adicionar uma nova opcao no webpack.config.js
+
+module.exports = {
+    entry: './src/main.js',
+    output: {
+        path: __dirname + '/public',
+        filename: 'bundle.js',
+    },
+    devServer: {
+        contentBase: __dirname + '/public'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: 'babel-loader',
+                }
+            }
+        ],
+    },
+};
+
+Alterar no package.json em script
+
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development"
+  }
+
+E para gerar o arquivo bundle.js para producao, adicionar
+
+  "scripts": {
+    "dev": "webpack-dev-server --mode=development",
+    "build": "webpack --mode=production"
+  }
+Utilizar o comando
+yarn build

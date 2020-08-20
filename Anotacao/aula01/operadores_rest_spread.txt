@@ -1,0 +1,103 @@
+no terminal
+yarn add @babel/plugin-proposal-object-rest-spread
+
+no arquivo .babelrc adicionar a seguinte linha
+"plugin": ["@babel/plugin-proposal-object-rest-spread"]
+
+rest serve basicamente para 3 funções
+normalmente operadores rest/spread são conhecido por utilizar ...
+
+O REST serve para gente pegar o resto das propriedades
+
+const usuario = {
+    nome: 'Diego',
+    idade: 23,
+    empresa: 'Rocketseat'
+};
+
+const { 
+    nome, 
+    ...resto 
+} = usuario;
+
+console.log(nome);
+// Diego
+console.log(resto);
+// {idade: 23, empresa: "Rocketseat"}
+
+
+Podemos aplicar o operador REST em vetores também
+
+const arr = [1, 2, 3, 4];
+
+const [ a, b, ...c] = arr;
+
+console.log(a);
+// 1
+console.log(b);
+// 2
+console.log(c);
+// [3, 4]
+
+Podemos aplicar o operador REST em parametros de funcoes
+
+function soma(a, b) {
+    return a + b;
+}
+
+console.log(soma(1, 3));
+// 4
+
+Se quisermos adicionar mais parametros na function no javascript temos que adicionar um a um
+//function soma(a, b, c, d)
+
+se utilizarmos o REST
+function soma(...params) {
+    return params;
+}
+
+console.log(soma(1, 3 ,4));
+// [1, 3, 4] // ele irá retornar os parametros usados
+
+Podemos utilizar o reduce para ter a mesma funcionalidade que a function anterior
+
+function soma(...params) {
+    return params.reduce((total, next) => total + next);
+}
+
+console.log(soma(1, 3 ,4));
+// 8
+
+Usando a lógica de resto
+function soma(a, b, ...params) {
+    return params.reduce((total, next) => total + next);
+}
+
+console.log(soma(1, 3 ,4));
+// 4 //Somente o 4 está na posição de resto
+
+
+SPREAD
+spread tem a função de repassar as informações de uma estrutura de dados para outra seja ela um objeto ou um array
+
+const arr1 = [1, 2, 3];
+const arr2 = [3, 4, 5];
+
+const arr3 = [...arr1, ...arr2]
+
+console.log(arr3)
+// [1, 2, 3, 4, 5, 6]
+
+Utilizando SPREAD em objeto
+const usuario1 = {
+    nome: 'Diego',
+    idade: '23',
+    empresa: 'Rocketseat'
+}
+
+const usuario2 = {...usuario1, nome: 'Gabriel' }
+
+console.log(usuario2)
+// { nome: "Gabriel", idade: 23, empresa: "Rocketseat"}
+// Apenas a propriedade nome foi alterada
+

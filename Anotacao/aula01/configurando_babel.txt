@@ -1,0 +1,26 @@
+no terminal
+yarn init //na raiz do projeto
+
+para todas as perguntas que o yarn solicitar, podemos simplesmente apertar enter
+
+yarn add @babel/cli //interface de linha de comando
+
+yarn add @babel/preset-env //ambiente de browser
+
+yarn add @babel/core
+
+adicionar o node_modules no .gitignore
+
+criar o arquivo .babelrc na raiz do projeto //arquivo de configuração babel
+{
+    "presets": ["@babel/preset-env"] //para configurar o ambiente para os navegadores
+}
+
+e montar a estrutura do projeto com index.html e etc.
+
+adicionar propriedade no package.json
+"scripts" : {
+    "dev": "babel ./main.js -o ./bundle.js -w"
+}
+
+Apontar o script no html para o ./bundle.js

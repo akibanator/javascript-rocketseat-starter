@@ -1,0 +1,83 @@
+Graças ao webpack conseguimos usar o recurso de import e export
+
+funcoes.js
+export function soma(a ,b) {
+    return a + b;
+}
+
+main.js
+import { soma } from './funcoes'; //Nao precisamos especificar o .js porque por padrao em import ele sempre procurará o arquivo js.
+
+console.log(soma(1, 2));
+// 3
+
+// Outras maneiras de usar o recurso import/export
+
+funcoes.js
+export function soma(a,b) {
+    return a + b;
+}
+
+export funcoes sub(a, b) {
+    return a - b;
+}
+
+main.js
+import { soma, sub } from './funcoes'; //Nao precisamos especificar o .js porque por padrao em import ele sempre procurará o arquivo js.
+
+console.log(soma(1, 2));
+// 3
+console.log(sub(2, 4));
+// 2
+
+// Cada arquivo js pode ter um export padrão utilizando o default.
+Em react é comum cada arquivo js ter uma funcao e utilizar o recurso default
+
+soma.js
+export default function soma(a, b) {
+    return a + b;
+}
+
+main.js
+import soma from './soma';
+
+console.log(soma(1, 2));
+// 3
+
+//Quando utilizamos no js o default ao importar podemos colocar o nome que quisermos
+import somaFuncao from './soma';
+
+console.log(somaFuncao(1, 2));
+// 3
+
+//Podemos também renomear funcoes sem default mas precisamos utilizar o "as"
+import { soma as somaFuncao, sub } from './funcoes';
+
+console.log(somaFuncao(1, 2));
+// 3
+
+//Podemos ter um export default com outros exports
+funcoes.js
+export default function soma(a,b) {
+    return a + b;
+}
+
+export funcoes sub(a, b) {
+    return a - b;
+}
+
+export funcoes mult(a, b) {
+    return a * b;
+}
+
+main.js
+import soma, {sub, mult} from './funcoes'
+
+//Para importar todas as funcoes
+import * as funcoes from './funcoes'
+
+console.log(funcoes)
+// Um array de objetos de cada funcoes declara no arquivo funcoes.js
+
+//Para usar as funcoes
+console.log(funcoes.soma(1, 2));
